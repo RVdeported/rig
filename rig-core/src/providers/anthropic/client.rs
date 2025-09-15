@@ -172,7 +172,12 @@ impl ProviderClient for Client {
     /// Panics if the environment variable is not set.
     fn from_env() -> Self {
         let api_key = std::env::var("ANTHROPIC_API_KEY").expect("ANTHROPIC_API_KEY not set");
-        Client::new(&api_key)
+        let base_url: Option<String> = std::env::var("ANTHROPIC_BASE_URL").ok();
+        match base_url {
+            Some(url) => Self::builder(&api_key).base_url(&url).build().unwrap(),
+            None => Self::new(&api_key),
+        }
+
     }
 
     fn from_val(input: crate::client::ProviderValue) -> Self {
