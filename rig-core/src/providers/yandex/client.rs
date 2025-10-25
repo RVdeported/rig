@@ -12,7 +12,7 @@ use std::fmt::{Debug, Display, Formatter, Result as FmtResult};
 
 use chrono::{Local, NaiveDateTime, TimeDelta};
 use regex::Regex;
-use schemas::*;
+use crate::providers::yandex::schemas::*;
 use std::{thread, time};
 
 // ================================================================
