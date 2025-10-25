@@ -171,8 +171,8 @@ impl<'a> DynClientBuilder {
             ),
             ClientFactory::new(
                 DefaultProviders::YANDEX,
-                yandex::Client::<reqwest::Client>::from_env_boxed,
-                yandex::Client::<reqwest::Client>::from_val_boxed,
+                yandex::client::Client::<reqwest::Client>::from_env_boxed,
+                yandex::client::Client::<reqwest::Client>::from_val_boxed,
             ),
         ])
     }
