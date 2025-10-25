@@ -233,8 +233,11 @@ where
     /// Panics if the environment variable is not set.
     fn from_env() -> Self {
         let api_key = std::env::var("ANTHROPIC_API_KEY").expect("ANTHROPIC_API_KEY not set");
-
-        ClientBuilder::<T>::new(&api_key).build().unwrap()
+        let base_url: Option<String> = std::env::var("ANTHROPIC_BASE_URL").ok();
+        match base_url {
+            Some(url) => ClientBuilder::<T>::builder(&api_key).base_url(&url).build().unwrap(),
+            None => ClientBuilder::<T>::new(&api_key).build().unwrap(),
+        }
     }
 
     fn from_val(input: crate::client::ProviderValue) -> Self {
