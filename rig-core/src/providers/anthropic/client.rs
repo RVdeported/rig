@@ -235,7 +235,7 @@ where
         let api_key = std::env::var("ANTHROPIC_API_KEY").expect("ANTHROPIC_API_KEY not set");
         let base_url: Option<String> = std::env::var("ANTHROPIC_BASE_URL").ok();
         match base_url {
-            Some(url) => ClientBuilder::<T>::builder(&api_key).base_url(&url).build().unwrap(),
+            Some(url) => Self::builder(&api_key).base_url(&url).build().unwrap(),
             None => ClientBuilder::<T>::new(&api_key).build().unwrap(),
         }
     }
