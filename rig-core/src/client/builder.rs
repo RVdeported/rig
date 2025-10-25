@@ -4,7 +4,7 @@ use crate::completion::{CompletionRequest, GetTokenUsage, Message, Usage};
 use crate::embeddings::embedding::EmbeddingModelDyn;
 use crate::providers::{
     anthropic, azure, cohere, deepseek, galadriel, gemini, groq, huggingface, hyperbolic, mira,
-    moonshot, ollama, openai, openrouter, perplexity, together, xai,
+    moonshot, ollama, openai, openrouter, perplexity, together, xai, yandex,
 };
 use crate::streaming::StreamingCompletionResponse;
 use crate::transcription::TranscriptionModelDyn;
@@ -168,6 +168,11 @@ impl<'a> DynClientBuilder {
                 DefaultProviders::PERPLEXITY,
                 perplexity::Client::<reqwest::Client>::from_env_boxed,
                 perplexity::Client::<reqwest::Client>::from_val_boxed,
+            ),
+            ClientFactory::new(
+                DefaultProviders::YANDEX,
+                yandex::Client::<reqwest::Client>::from_env_boxed,
+                yandex::Client::<reqwest::Client>::from_val_boxed,
             ),
         ])
     }
@@ -719,4 +724,5 @@ impl DefaultProviders {
     pub const MISTRAL: &'static str = "mistral";
     pub const OLLAMA: &'static str = "ollama";
     pub const PERPLEXITY: &'static str = "perplexity";
+    pub const YANDEX: &'static str = "yandex";
 }
