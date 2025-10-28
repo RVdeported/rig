@@ -117,7 +117,7 @@ pub struct Cell {
 pub struct Picture {
     #[serde(rename = "boundingBox")]
     pub bounding_box: BoundingBox,
-    pub score: String,
+    // pub score: String,
 }
 
 #[derive(Clone, Debug, Serialize, Deserialize, Default)]
