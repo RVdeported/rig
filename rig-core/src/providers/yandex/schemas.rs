@@ -4,21 +4,21 @@ use serde::{Deserialize, Serialize};
 pub struct ResultOcr {
     #[serde(rename = "textAnnotation")]
     pub text_ann: Annotation,
-    pub page: String,
+    pub page: Option<String>,
 }
 
 #[derive(Clone, Debug, Serialize, Deserialize, Default)]
 pub struct Annotation {
-    pub width: String,
-    pub height: String,
-    pub blocks: Vec<Block>,
-    pub entities: Vec<Entity>,
-    pub tables: Vec<Table>,
+    pub width: Option<String>,
+    pub height: Option<String>,
+    pub blocks: Option<Vec<Block>>,
+    pub entities: Option<Vec<Entity>>,
+    pub tables: Option<Vec<Table>>,
     #[serde(rename = "fullText")]
     pub full_text: String,
-    pub rotate: String,
-    pub markdown: String,
-    pub pictures: Vec<Picture>,
+    pub rotate: Option<String>,
+    pub markdown: Option<String>,
+    pub pictures: Option<Vec<Picture>>,
 }
 
 #[derive(Clone, Debug, Serialize, Deserialize, Default)]
