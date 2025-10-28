@@ -601,7 +601,9 @@ impl TryFrom<CompletionResponse> for completion::CompletionResponse<CompletionRe
     fn try_from(response: CompletionResponse) -> Result<Self, Self::Error> {
         tracing::trace!("TRYING FROM");
         let choice = OneOrMany::one(AssistantContent::text(format!(
-            "{}\n\n{:?}",
+            "BLOCKS:{:?}\nTABLES:{:?}\nFULL_TEXT:{}\nENTITIES:{:?}",
+            response.result.text_ann.blocks,
+            response.result.text_ann.tables,
             response.result.text_ann.full_text.clone(),
             response.result.text_ann.entities
         )));
