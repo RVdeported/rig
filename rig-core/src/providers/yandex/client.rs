@@ -601,9 +601,9 @@ impl TryFrom<CompletionResponse> for completion::CompletionResponse<CompletionRe
     fn try_from(response: CompletionResponse) -> Result<Self, Self::Error> {
         tracing::trace!("TRYING FROM");
         let choice = OneOrMany::one(AssistantContent::text(format!(
-            "ENTITIES:{}\n\nTABLES:{}\n\nMARKDOWN:{}\n\nFULL_TEXT:{}",
+            "ENTITIES:{}\n\nMARKDOWN:{}\n\nFULL_TEXT:{}",
             serde_json::to_string(&response.result.text_ann.entities).unwrap(),
-            serde_json::to_string(&response.result.text_ann.tables).unwrap(),
+            // serde_json::to_string(&response.result.text_ann.tables).unwrap(),
             serde_json::to_string(&response.result.text_ann.markdown).unwrap(),
             serde_json::to_string(&response.result.text_ann.full_text).unwrap(),
         )));
